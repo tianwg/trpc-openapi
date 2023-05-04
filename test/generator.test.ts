@@ -85,6 +85,7 @@ describe('generator', () => {
               "description": "Error response",
             },
           },
+          "schemas": Object {},
           "securitySchemes": Object {
             "Authorization": Object {
               "scheme": "bearer",
@@ -123,7 +124,7 @@ describe('generator', () => {
 
       expect(() => {
         generateOpenApiDocument(appRouter, defaultDocOpts);
-      }).toThrowError('[query.noInput] - Input parser expects a Zod validator');
+      }).toThrowError('[query-noInput] - Input parser expects a Zod validator');
     }
     {
       const appRouter = t.router({
@@ -139,7 +140,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[mutation.noInput] - Input parser expects a Zod validator');
+      }).toThrowError('[mutation-noInput] - Input parser expects a Zod validator');
     }
   });
 
@@ -158,7 +159,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.noOutput] - Output parser expects a Zod validator');
+      }).toThrowError('[query-noOutput] - Output parser expects a Zod validator');
     }
     {
       const appRouter = t.router({
@@ -174,7 +175,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[mutation.noOutput] - Output parser expects a Zod validator');
+      }).toThrowError('[mutation-noOutput] - Output parser expects a Zod validator');
     }
   });
 
@@ -194,7 +195,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.badInput] - Input parser expects a Zod validator');
+      }).toThrowError('[query-badInput] - Input parser expects a Zod validator');
     }
     {
       const appRouter = t.router({
@@ -211,7 +212,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.badInput] - Output parser expects a Zod validator');
+      }).toThrowError('[query-badInput] - Output parser expects a Zod validator');
     }
   });
 
@@ -231,7 +232,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.badInput] - Input parser must be a ZodObject');
+      }).toThrowError('[query-badInput] - Input parser must be a ZodObject');
     }
     {
       const appRouter = t.router({
@@ -248,7 +249,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[mutation.badInput] - Input parser must be a ZodObject');
+      }).toThrowError('[mutation-badInput] - Input parser must be a ZodObject');
     }
   });
 
@@ -274,7 +275,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.badInput] - Input parser key: "age" must be ZodString');
+      }).toThrowError('[query-badInput] - Input parser key: "age" must be ZodString');
     }
     {
       const appRouter = t.router({
@@ -338,7 +339,7 @@ describe('generator', () => {
         version: '1.0.0',
         baseUrl: 'http://localhost:3000/api',
       });
-    }).toThrowError('[query.badMethod] - Method must be GET, POST, PATCH, PUT or DELETE');
+    }).toThrowError('[query-badMethod] - Method must be GET, POST, PATCH, PUT or DELETE');
   });
 
   test('with duplicate routes', () => {
@@ -362,7 +363,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.procedure2] - Duplicate procedure defined for route GET /procedure');
+      }).toThrowError('[query-procedure2] - Duplicate procedure defined for route GET /procedure');
     }
     {
       const appRouter = t.router({
@@ -384,7 +385,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.procedure2] - Duplicate procedure defined for route GET /procedure');
+      }).toThrowError('[query-procedure2] - Duplicate procedure defined for route GET /procedure');
     }
   });
 
@@ -407,7 +408,7 @@ describe('generator', () => {
         version: '1.0.0',
         baseUrl: 'http://localhost:3000/api',
       });
-    }).toThrowError('[subscription.currentName] - Subscriptions are not supported by OpenAPI v3');
+    }).toThrowError('[subscription-currentName] - Subscriptions are not supported by OpenAPI v3');
   });
 
   test('with void and path parameters', () => {
@@ -425,7 +426,7 @@ describe('generator', () => {
         version: '1.0.0',
         baseUrl: 'http://localhost:3000/api',
       });
-    }).toThrowError('[query.pathParameters] - Input parser must be a ZodObject');
+    }).toThrowError('[query-pathParameters] - Input parser must be a ZodObject');
   });
 
   test('with optional path parameters', () => {
@@ -443,7 +444,7 @@ describe('generator', () => {
         version: '1.0.0',
         baseUrl: 'http://localhost:3000/api',
       });
-    }).toThrowError('[query.pathParameters] - Path parameter: "name" must not be optional');
+    }).toThrowError('[query-pathParameters] - Path parameter: "name" must not be optional');
   });
 
   test('with missing path parameters', () => {
@@ -461,7 +462,7 @@ describe('generator', () => {
         version: '1.0.0',
         baseUrl: 'http://localhost:3000/api',
       });
-    }).toThrowError('[query.pathParameters] - Input parser expects key from path: "name"');
+    }).toThrowError('[query-pathParameters] - Input parser expects key from path: "name"');
   });
 
   test('with valid procedures', () => {
@@ -539,6 +540,7 @@ describe('generator', () => {
               "description": "Error response",
             },
           },
+          "schemas": Object {},
           "securitySchemes": Object {
             "Authorization": Object {
               "scheme": "bearer",
@@ -557,7 +559,7 @@ describe('generator', () => {
           "/users": Object {
             "get": Object {
               "description": undefined,
-              "operationId": "query.readUsers",
+              "operationId": "query-readUsers",
               "parameters": Array [],
               "requestBody": undefined,
               "responses": Object {
@@ -597,7 +599,7 @@ describe('generator', () => {
             },
             "post": Object {
               "description": undefined,
-              "operationId": "mutation.createUser",
+              "operationId": "mutation-createUser",
               "parameters": Array [],
               "requestBody": Object {
                 "content": Object {
@@ -654,7 +656,7 @@ describe('generator', () => {
           "/users/{id}": Object {
             "delete": Object {
               "description": undefined,
-              "operationId": "mutation.deleteUser",
+              "operationId": "mutation-deleteUser",
               "parameters": Array [
                 Object {
                   "description": undefined,
@@ -686,7 +688,7 @@ describe('generator', () => {
             },
             "get": Object {
               "description": undefined,
-              "operationId": "query.readUser",
+              "operationId": "query-readUser",
               "parameters": Array [
                 Object {
                   "description": undefined,
@@ -733,7 +735,7 @@ describe('generator', () => {
             },
             "patch": Object {
               "description": undefined,
-              "operationId": "mutation.updateUser",
+              "operationId": "mutation-updateUser",
               "parameters": Array [
                 Object {
                   "description": undefined,
@@ -905,7 +907,7 @@ describe('generator', () => {
     expect(openApiDocument.paths['/user']!.post!).toMatchInlineSnapshot(`
       Object {
         "description": undefined,
-        "operationId": "mutation.createUser",
+        "operationId": "mutation-createUser",
         "parameters": Array [],
         "requestBody": Object {
           "content": Object {
@@ -974,7 +976,7 @@ describe('generator', () => {
     expect(openApiDocument.paths['/user']!.get!).toMatchInlineSnapshot(`
       Object {
         "description": undefined,
-        "operationId": "query.getUser",
+        "operationId": "query-getUser",
         "parameters": Array [
           Object {
             "description": "User ID",
@@ -1753,7 +1755,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.union] - Input parser key: "payload" must be ZodString');
+      }).toThrowError('[query-union] - Input parser key: "payload" must be ZodString');
     }
     {
       const appRouter = t.router({
@@ -1973,7 +1975,7 @@ describe('generator', () => {
           version: '1.0.0',
           baseUrl: 'http://localhost:3000/api',
         });
-      }).toThrowError('[query.nativeEnum] - Input parser key: "name" must be ZodString');
+      }).toThrowError('[query-nativeEnum] - Input parser key: "name" must be ZodString');
     }
     {
       enum ValidEnum {
@@ -2296,7 +2298,7 @@ describe('generator', () => {
         "/procedure": Object {
           "get": Object {
             "description": undefined,
-            "operationId": "query.procedure",
+            "operationId": "query-procedure",
             "parameters": Array [
               Object {
                 "description": undefined,
@@ -2341,7 +2343,7 @@ describe('generator', () => {
         "/router/procedure": Object {
           "get": Object {
             "description": undefined,
-            "operationId": "query.router.procedure",
+            "operationId": "query-router-procedure",
             "parameters": Array [
               Object {
                 "description": undefined,
@@ -2386,7 +2388,7 @@ describe('generator', () => {
         "/router/router/procedure": Object {
           "get": Object {
             "description": undefined,
-            "operationId": "query.router.router.procedure",
+            "operationId": "query-router-router-procedure",
             "parameters": Array [
               Object {
                 "description": undefined,
@@ -2512,7 +2514,7 @@ describe('generator', () => {
 
       expect(() => {
         generateOpenApiDocument(appRouter, defaultDocOpts);
-      }).toThrowError('[mutation.withNone] - At least one content type must be specified');
+      }).toThrowError('[mutation-withNone] - At least one content type must be specified');
     }
     {
       const appRouter = t.router({

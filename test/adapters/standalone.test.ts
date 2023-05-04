@@ -86,7 +86,7 @@ describe('standalone adapter', () => {
       createOpenApiHttpHandler({
         router: appRouter,
       });
-    }).toThrowError('[query.invalidRoute] - Output parser expects a Zod validator');
+    }).toThrowError('[query-invalidRoute] - Output parser expects a Zod validator');
   });
 
   test('with not found path', async () => {
