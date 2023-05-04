@@ -14,8 +14,7 @@ export const getOpenApiPathsObject = (
   const procedures = appRouter._def.procedures as OpenApiProcedureRecord;
 
   forEachOpenApiProcedure(procedures, ({ path: procedurePath, type, procedure, openapi }) => {
-    const operationId = `${type}.${procedurePath}`;
-
+    const operationId = `${type}_${procedurePath}`.replace(/\./g, '-');
     try {
       if (type === 'subscription') {
         throw new TRPCError({

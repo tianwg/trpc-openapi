@@ -33,6 +33,7 @@ export const generateOpenApiDocument = (
     ],
     paths: getOpenApiPathsObject(appRouter, {}),
     components: {
+      schemas: {},
       securitySchemes: {
         Authorization: {
           type: 'http',
